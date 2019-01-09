@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>CELERATES UNIVERSITY</title>
+
+        <!-- Favicon     -->
+        <link rel="icon" type="image/png" href="{{ .Static }}img/favicon2.ico">
+
+        <!-- Bootstrap core CSS     -->
+        <link rel="stylesheet" href="{{ .Static }}css/bootstrap.min.css" type="text/css">
+
+        <!-- Animation library for notifications   -->
+        <link href="{{ .Static }}css/animate.min.css" rel="stylesheet"/>
+
+        <!--  Light Bootstrap Table core CSS    -->
+        <link href="{{ .Static }}css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+
+        <!--     Fonts and icons     -->
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+        <link href="{{ .Static }}css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+        <!--     Datatables     -->
+        <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+    </head>
+    <body>
+        <div class="wrapper">
+            <!--SIDEBAR-->
+            {{  template "Sidebar" . }}
+            <div class="main-panel">
+                <!--HEADER-->
+                {{  template "Header" . }}
+                <!--CONTENT-->
+                <div class="content">
+                    <div class="container-fluid" align="center">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            {{ template "content" . }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--FOOTER-->
+                {{  template "Footer" . }}
+            </div>
+        </div>
+
+
+        <!--   JAVASCRIPTS   -->
+        <!--   Core JS Files   -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
+	<script src="{{ .Static }}js/bootstrap.min.js" type="text/javascript"></script> 
+
+    <!-- Datatables -->
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#example").DataTable();
+        } );
+    </script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="{{ .Static }}js/bootstrap-checkbox-radio-switch.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="{{ .Static }}js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="{{ .Static }}js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="{{ .Static }}js/light-bootstrap-dashboard.js"></script>
+    </body>
+</html>
