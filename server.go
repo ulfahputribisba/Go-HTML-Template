@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"html/template"
 	"io"
@@ -17,6 +18,26 @@ type Context struct {
 	Static string
 }
 
+type students struct {
+	Idstudent   int
+	Nim         sql.NullString
+	Name        sql.NullString
+	Dateofbirth sql.NullString
+	City        sql.NullString
+	Major       sql.NullString
+	Year_in     sql.NullString
+}
+
+func konekKeDB() *sql.DB {
+	db, err := sql.Open("sqlite3", "./celerates_unv.db")
+
+	if err != nil {
+		panic(err.Error)
+	}
+
+	return db
+}
+
 func Home(w http.ResponseWriter, req *http.Request) {
 	context := Context{Title: "Welcome!"}
 	render(w, "index", context)
@@ -30,6 +51,11 @@ func About(w http.ResponseWriter, req *http.Request) {
 func render(w http.ResponseWriter, tmpl string, context Context) {
 	context.Static = STATIC_URL
 	tmpl_list := []string{"templates/base.html",
+		"templates/footer.html",
+		"templates/header.html",
+		"templates/sidebar.html",
+		"templates/topassets.html",
+		"templates/bottomassets.html",
 		fmt.Sprintf("templates/%s.html", tmpl)}
 	t, err := template.ParseFiles(tmpl_list...)
 	if err != nil {
@@ -52,6 +78,13 @@ func StaticHandler(w http.ResponseWriter, req *http.Request) {
 		}
 	}
 	http.NotFound(w, req)
+}
+
+func checkErr(err error, args ...string) {
+	if err != nil {
+		fmt.Println("Error Nya : ")
+		fmt.Println("%q: %s", err, args)
+	}
 }
 
 func main() {
